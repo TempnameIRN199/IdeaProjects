@@ -1,0 +1,121 @@
+package org.example;
+
+import java.text.DateFormat;
+
+public class Human {
+    private String _surName;
+    private String _firstName;
+    private String _patronymic;
+    private int _age;
+    private DateFormat _birthDate;
+    private String _phoneNumber;
+    private String _country;
+    private String _address;
+    private static int _count = 0;
+
+    public Human(String surname, String firstName, String patronymic, int age) {
+        _surName = surname;
+        _firstName = firstName;
+        _patronymic = patronymic;
+        _age = age;
+    }
+
+    private void _setHuman(String surName, String firstName, String patronymic, int age,
+                           DateFormat birthDate, String phoneNumber, String country,
+                           String address) {
+        _surName = surName;
+        _firstName = firstName;
+        _patronymic = patronymic;
+        _age = age;
+        _birthDate = birthDate;
+        _phoneNumber = phoneNumber;
+        _country = country;
+        _address = address;
+        _count++;
+    }
+
+    public void setHuman(String surName, String firstName, String patronymic, int age,
+                         DateFormat birthDate, String phoneNumber, String country,
+                         String address) {
+        _setHuman(surName, firstName, patronymic, age, birthDate, phoneNumber, country, address);
+    }
+
+    public void _getHuman() {
+        System.out.println("Surname: " + _surName);
+        System.out.println("First name: " + _firstName);
+        System.out.println("Patronymic: " + _patronymic);
+        System.out.println("Age: " + _age);
+        System.out.println("Birth date: " + _birthDate);
+        System.out.println("Phone number: " + _phoneNumber);
+        System.out.println("Country: " + _country);
+        System.out.println("Address: " + _address);
+    }
+
+    public void setSurName(String surName) {
+        _surName = surName;
+    }
+
+    public String getSurName() {
+        return _surName;
+    }
+
+    public void setFirstName(String firstName) {
+        _firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return _firstName;
+    }
+
+    public void setPatronymic(String patronymic) {
+        _patronymic = patronymic;
+    }
+
+    public String getPatronymic() {
+        return _patronymic;
+    }
+
+    public void setAge(int age) {
+        _age = age;
+    }
+
+    public int getAge() {
+        return _age;
+    }
+
+    public void setBirthDate(DateFormat birthDate) {
+        _birthDate = birthDate;
+    }
+
+    public DateFormat getBirthDate() {
+        return _birthDate;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        _phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return _phoneNumber;
+    }
+
+    public void setCountry(String country) {
+        _country = country;
+    }
+
+    public String getCountry() {
+        return _country;
+    }
+
+    public void setAddress(String address) {
+        _address = address;
+    }
+
+    public String getAddress() {
+        return _address;
+    }
+
+    public static int getCount() {
+        return _count;
+    }
+}
