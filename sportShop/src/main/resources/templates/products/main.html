@@ -1,0 +1,74 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Фільтри</h4>
+            <form method="get" action="/products">
+                <input type="hidden" id="categoryId" name="categoryId" th:value="${selectedCategoryId}" />
+                <div class="mb-3">
+                    <label for="minPrice" class="form-label">Мінімальна ціна</label>
+                    <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="0">
+                </div>
+                <div class="mb-3">
+                    <label for="maxPrice" class="form-label">Максимальна ціна</label>
+                    <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="1000">
+                </div>
+                <div class="mb-3">
+                    <label for="brand" class="form-label">Бренд</label>
+                    <select class="form-select" id="brand" name="brand">
+                        <option value="">Всі бренди</option>
+                        <option th:each="brand : ${brands}" th:value="${brand}" th:text="${brand}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="size" class="form-label">Розмір</label>
+                    <select class="form-select" id="size" name="size">
+                        <option value="">Всі розміри</option>
+                        <option th:each="size : ${sizes}" th:value="${size}" th:text="${size}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-label">Колір</label>
+                    <select class="form-select" id="color" name="color">
+                        <option value="">Всі кольори</option>
+                        <option th:each="color : ${colors}" th:value="${color}" th:text="${color}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Застосувати</button>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-md-4 mb-4" th:each="product : ${products}">
+                    <div class="card h-100">
+                        <div class="ratio ratio-4x3">
+                            <img th:src="@{${product.imageUrl}}"
+                                 th:alt="${product.name}"
+                                 style="object-fit: cover;">
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title" th:text="${product.name}">Назва товару</h5>
+                                <p class="card-text" th:text="${product.description}">Опис товару</p>
+                            </div>
+                            <div>
+                                <p class="card-text fw-bold">
+                                    Ціна: <span th:text="${product.price}">0</span> грн
+                                </p>
+                                <form th:action="@{/cart/add}" method="post">
+                                    <input type="hidden" name="productId" th:value="${product.id}" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                    <button type="submit" class="btn btn-primary">Додати в кошик</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${#lists.isEmpty(products)}" class="col-12">
+                    <p>Немає доступних товарів.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

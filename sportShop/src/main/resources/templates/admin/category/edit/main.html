@@ -1,0 +1,14 @@
+<div th:fragment="main">
+    <div class="container mt-4">
+        <h1 th:text="${category.id} != null ? 'Редагувати категорію' : 'Нова категорія'" class="mb-4"></h1>
+        <form th:action="@{/admin/categories/save}" th:object="${category}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <label for="name" class="form-label">Назва:</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Введіть назву категорії" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+        </form>
+        <a th:href="@{/admin/categories}" class="btn btn-secondary mt-3">Повернутися до списку</a>
+    </div>
+</div>

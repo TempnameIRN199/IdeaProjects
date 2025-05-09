@@ -1,0 +1,27 @@
+<div th:fragment="main">
+    <div class="container mt-4">
+        <h1 class="mb-4">Список категорій</h1>
+        <a th:href="@{/admin/categories/new}" class="btn btn-success mb-3">Додати категорію</a>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Дії</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="category : ${categories}">
+                <td th:text="${category.id}"></td>
+                <td th:text="${category.name}"></td>
+                <td>
+                    <a th:href="@{'/admin/categories/edit/' + ${category.id}}" class="btn btn-sm btn-warning">Редагувати</a>
+                    <a th:href="@{'/admin/categories/delete/' + ${category.id}}"
+                       onclick="return confirm('Ви впевнені, що хочете видалити цю категорію?');"
+                       class="btn btn-sm btn-danger">Видалити</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

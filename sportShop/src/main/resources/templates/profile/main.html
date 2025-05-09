@@ -1,0 +1,36 @@
+<div class="container my-4">
+    <h1 class="mb-4">Особистий кабінет</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Інформація про користувача</h2>
+            <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item"><strong>ПІБ:</strong> <span th:text="${user.fullName}">Ім'я</span></li>
+                <li class="list-group-item"><strong>Місто:</strong> <span th:text="${user.city}">Місто</span></li>
+                <li class="list-group-item"><strong>Країна:</strong> <span th:text="${user.country}">Країна</span></li>
+                <li class="list-group-item"><strong>Телефон:</strong> <span th:text="${user.phone}">Телефон</span></li>
+                <li class="list-group-item"><strong>Email:</strong> <span th:text="${user.email}">Email</span></li>
+            </ul>
+            <a th:href="@{/profile/edit}" class="btn btn-primary mt-3">Редагувати профіль</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Історія замовлень</h2>
+            <table class="table table-striped table-hover mt-3">
+                <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Сума</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">01-01-2023 12:00</td>
+                    <td th:text="${order.total}">100.0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

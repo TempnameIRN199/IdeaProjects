@@ -1,0 +1,35 @@
+<div th:fragment="main">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-black text-white">
+                <h2 class="mb-0">Список користувачів</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ім'я</th>
+                        <th>Email</th>
+                        <th>Дії</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">1</td>
+                        <td th:text="${user.username}">Ім'я</td>
+                        <td th:text="${user.email}">email@example.com</td>
+                        <td>
+                            <form th:action="@{/admin/users/delete}" method="post" onsubmit="return confirm('Ви впевнені, що хочете видалити цього користувача?');">
+                                <input type="hidden" name="id" th:value="${user.id}" />
+                                <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="/admin" class="btn btn-secondary">Повернутися до головного меню</a>
+            </div>
+        </div>
+    </div>
+</div>

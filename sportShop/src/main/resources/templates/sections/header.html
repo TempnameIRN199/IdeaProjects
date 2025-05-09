@@ -1,0 +1,73 @@
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a th:href="@{/products(categoryId=1)}" class="nav-link px-2"
+                       th:classappend="${selectedCategoryId != null and selectedCategoryId == 1 ? 'text-white' : 'text-secondary'}">
+                        Штани
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/products(categoryId=2)}" class="nav-link px-2"
+                       th:classappend="${selectedCategoryId != null and selectedCategoryId == 2 ? 'text-white' : 'text-secondary'}">
+                        Взуття
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/products(categoryId=3)}" class="nav-link px-2"
+                       th:classappend="${selectedCategoryId != null and selectedCategoryId == 3 ? 'text-white' : 'text-secondary'}">
+                        Костюми
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/products(categoryId=4)}" class="nav-link px-2"
+                       th:classappend="${selectedCategoryId != null and selectedCategoryId == 4 ? 'text-white' : 'text-secondary'}">
+                        Топи
+                    </a>
+                </li>
+            </ul>
+            <div class="text-end">
+                <a th:href="@{/cart}" class="btn btn-outline-light me-2">
+                    <i class="bi bi-cart"></i> Корзина
+                </a>
+
+                <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+                   th:href="@{/admin}"
+                   class="btn btn-danger me-2">
+                    Admin
+                </a>
+
+                <a th:if="${#authorization.expression('isAuthenticated()')}"
+                   th:href="@{/profile}"
+                   class="btn btn-outline-light me-2">
+                    Мій профіль
+                </a>
+
+                <a th:if="${not #authorization.expression('isAuthenticated()')}"
+                   href="/login"
+                   class="btn btn-outline-light me-2">
+                    Login
+                </a>
+                <a th:if="${not #authorization.expression('isAuthenticated()')}"
+                   href="/register"
+                   class="btn btn-warning">
+                    Sign-up
+                </a>
+
+                <form th:if="${#authorization.expression('isAuthenticated()')}"
+                      th:action="@{/logout}"
+                      method="post"
+                      style="display:inline;">
+                    <button type="submit" class="btn btn-outline-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
